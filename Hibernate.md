@@ -65,8 +65,8 @@ public class Person
   <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
   
  
-  <class>com.nj.jpademo.entities.Stock</class>
-  <class>com.nj.jpademo.entities.Category</class>
+  <class>com.nj.jpademo.entities.Person</class>
+  <class>com.nj.jpademo.entities.Address</class>
   
   <properties>
     <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpadb?useSSL=true" />
