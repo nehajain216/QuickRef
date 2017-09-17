@@ -281,6 +281,7 @@ public class TodoDAO
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 ```
+* Note: <tx:annotation-driven/> -- tells that Transaction manager is annotation driven. @Transaction annotation will be used.
 
 * Create AddressBookDAO which includes @Transaction annotation -- AddressBookService and AddressBookController remains same.
 However @Transaction is more preferred in Service Layer (Here AddressBookService) , rather than DAO Layer (here AddressBookDAO)
@@ -328,7 +329,9 @@ public class AddressBookDAO
 }
 ```
 
-# Spring - JPA configuration using XML
+# Spring - JPA configuration 
+* It could be done using XML or java config
+# Spring - JPA configurationusing XML
 
 * Maven Dependencies 
 ```
@@ -343,7 +346,7 @@ public class AddressBookDAO
 ```
 
 * JPA beans Configuration 
-In Spring, we configure EntityManagerFactory as bean in XML. So we will not require to create any singleton class for EntityManagerFactory. We can directly declare and call "EntityManager" by using @PersistenceContext annotation (sample is give below AddressBookDAO).
+*In Spring, we configure EntityManagerFactory as bean in XML. So we will not require to create any singleton class for EntityManagerFactory. We can directly declare and call "EntityManager" by using @PersistenceContext annotation (sample is give below AddressBookDAO).
 ```
 <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
       <property name="dataSource" ref="dataSource" />
@@ -405,3 +408,56 @@ public class AddressBookDAO
 ```
 
 # Spring - JPA configuration using Java config
+* Maven Dependencies will remain same as mentioned in JPA XML configuration.
+
+* JPA Java Configuration.
+* Create AppConfig.java class (class name could be anything, we have named it as "AppConfig" here)
+```
+@Configuration
+@ComponentScan(basePackages={"com.nj.addressbook"})
+@EnableTransactionManagement
+@EnableJpaRepositories(basePackages={"com.nj.addressbook.dao"})
+public class AppConfig 
+{
+	@Bean
+		public DataSource dataSource()
+		{
+			DriverManagerDataSource dataSource = new DriverManagerDataSource();
+			dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+			dataSource.setUrl("jdbc:mysql://localhost:3306/addressbook?useSSL=true");
+			dataSource.setUsername("root");
+			dataSource.setPassword("admin");
+			return dataSource;
+		}
+	 @Bean
+	    public PlatformTransactionManager transactionManager(DataSource dataSource)
+	    {
+	        EntityManagerFactory factory = entityManagerFactory(dataSource).getObject();
+	        return new JpaTransactionManager(factory);
+	    }
+	 @Bean
+	    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource)
+	    {
+	        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+	 
+	        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+	        vendorAdapter.setGenerateDdl(Boolean.TRUE);
+	        vendorAdapter.setShowSql(Boolean.TRUE);
+	 
+	        factory.setDataSource(dataSource);
+	        factory.setJpaVendorAdapter(vendorAdapter);
+	        factory.setPackagesToScan("com.nj.addressbook");
+	 
+	        Properties jpaProperties = new Properties();
+	        jpaProperties.put("hibernate.hbm2ddl.auto", "update");
+	        factory.setJpaProperties(jpaProperties);
+	 
+	        factory.afterPropertiesSet();
+	        factory.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());
+	        return factory;
+	    }
+}
+```
+* XML Tag "<tx:annotation-driven/>" is represented as "@EnableTransactionManagement" in javaconfig
+
+* No change in AddressBookDAO, AddressBookServices and AddressBookController
