@@ -222,6 +222,7 @@ public class UserDAO
 ```
 
 # Spring - JDBC configuration using XML
+* In Spring JDBC configuration is always preferred using XML
 * Configuring JDBC connection in XML files
 
 ```
@@ -327,3 +328,80 @@ public class AddressBookDAO
 }
 ```
 
+# Spring - JPA configuration using XML
+
+* Maven Dependencies 
+```
+<dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-orm</artifactId>
+</dependency>
+<dependency>
+	<groupId>org.hibernate</groupId>
+	<artifactId>hibernate-entitymanager</artifactId>
+</dependency>
+```
+
+* JPA beans Configuration 
+In Spring, we configure EntityManagerFactory as bean in XML. So we will not require to create any singleton class for EntityManagerFactory. We can directly declare and call "EntityManager" by using @PersistenceContext annotation (sample is give below AddressBookDAO).
+```
+<bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+      <property name="dataSource" ref="dataSource" />
+      <property name="packagesToScan" value="com.nj.addressbook.entities" />
+      <property name="jpaVendorAdapter">
+         <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+      </property>
+      <property name="jpaProperties">
+         <props>
+            <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+            <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+         </props>
+      </property>
+</bean>
+<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/addressbook?useSSL=true"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="admin"></property>
+</bean>
+<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+</bean>
+	
+<tx:annotation-driven/>
+<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+      <property name="entityManagerFactory" ref="emf" />
+</bean>
+```
+
+* Create AddressBookDAO
+```
+@Repository
+public class AddressBookDAO 
+{
+	@PersistenceContext
+	private EntityManager em;
+	
+	public List<Contact> getAllContacts()
+	{
+		return em.createQuery("select c from Contact c",Contact.class).getResultList();
+	}
+	
+	@Transactional(readOnly=true, propagation=Propagation.REQUIRED)
+	public Contact getContactById(int id)
+	{
+		return em.find(Contact.class, id);
+	}
+	
+	@Transactional
+	public Contact createContact(Contact contact)
+	{
+		 em.persist(contact);
+		 return contact;
+	}
+}
+```
+
+# Spring - JPA configuration using Java config
