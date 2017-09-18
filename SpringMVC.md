@@ -1,4 +1,4 @@
-# Spring MVC configuration - XML based Quick Reference
+# Spring MVC configuration Quick Reference
 
 ## Introduction
 *Spring MVC is one of the most important modules of the Spring framework
@@ -66,7 +66,7 @@ public class IndexController {
 }
 ```
 
-* Create MyBlogDAO
+* Create MyBlogDAO -- This is created using Spring Data JPA (can be coded using JPA as well. MyBlogService will get updated accordingly)
 ```
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
