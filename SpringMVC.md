@@ -106,3 +106,40 @@ public class MyBlogService
 	}
 }
 ```
+
+* Create home.jsp
+```
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Welcome to MyBlog</title>
+</head>
+<body>
+	<table>
+		<c:if test="${ListOfAllPosts.isEmpty()}">
+			<tr>
+				<td colspan="4">No Post found</td>
+			</tr>
+		</c:if>
+		<c:if test="${!ListOfAllPosts.isEmpty()}">
+
+			<c:forEach var="allPosts" items="${ListOfAllPosts}">
+				<tr>
+					<td><h3>
+							<b><c:out value="${allPosts.title}" /></b>
+						</h3></td>
+				</tr>
+				<tr>
+					<td><c:out value="${allPosts.content}" /></td>
+				</tr>
+				<tr>
+					<td></td>
+				</tr>
+			</c:forEach>
+		</c:if>
+	</table>
+</body>
+</html>
+```
