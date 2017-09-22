@@ -3,6 +3,8 @@
 ## Introduction
 *Spring MVC is one of the most important modules of the Spring framework
 
+## Spring MVC configuration using XML
+
 ## Getting Started
 
 * Maven Dependencies
@@ -124,7 +126,6 @@ public class MyBlogService
 			</tr>
 		</c:if>
 		<c:if test="${!ListOfAllPosts.isEmpty()}">
-
 			<c:forEach var="allPosts" items="${ListOfAllPosts}">
 				<tr>
 					<td><h3>
@@ -143,3 +144,5 @@ public class MyBlogService
 </body>
 </html>
 ```
+## Spring MVC configuration using Javaconfig
+

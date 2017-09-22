@@ -27,7 +27,7 @@
 </dependency>
 ```
 
-* Create UserController
+* Create UserController -- By UserController, we mean a servlet here. When servlet is used in web part and rest all (Service and DAO layers are configured using Spring, we still have to use "application context". But, if web layer is using Spring MVC, then application context is created automatically, need not configure is explicitly. 
 
 ```
 public class UserController {
@@ -331,7 +331,7 @@ public class AddressBookDAO
 
 # Spring - JPA configuration 
 * It could be done using XML or java config
-# Spring - JPA configurationusing XML
+# Spring - JPA configuration using XML
 
 * Maven Dependencies 
 ```
