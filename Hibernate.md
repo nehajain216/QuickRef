@@ -1,6 +1,7 @@
 # JPA/Hibernate Quick Reference
 
 ## Introduction
+* Hibernate is a persistence framework which is used to persist data from Java environment to database.
 * JPA is a Object Relational Mapping framework.
 * JPA is a Specification and Hibernate is implementation of JPA.
 * There are other implementations of JPA like EclipseLink.
@@ -83,6 +84,7 @@ public class Person
 ```
 
 * Create EntityManagerFactory
+* Notes: A connection to a database is represented by an EntityManager instance, which also provides functionality for performing operations on a database. An EntityManagerFactory is constructed for a specific database and the main role of an EntityManagerFactory instance is to support instantiation of EntityManager instances.
 
 ```
 import javax.persistence.EntityManager;
