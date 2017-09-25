@@ -9,14 +9,30 @@
 
 * Maven Dependencies
 ```
-<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-webmvc</artifactId>
-</dependency>
-<dependency>
-		<groupId>org.springframework.data</groupId>
-		<artifactId>spring-data-jpa</artifactId>
-</dependency>
+<dependencies>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+	</dependencies>
 ```
 
 * Update web.xml file to include DispatcherServlet (one servlet) to receive all kinds of information.
@@ -145,4 +161,55 @@ public class MyBlogService
 </html>
 ```
 ## Spring MVC configuration using Javaconfig
+
+* Maven Dependencies remain same.
+
+* Create MyWebAppInitializer.java class
+```
+public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+    	return new Class[] { AppConfig.class };
+    }
+
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
+        return new Class[] { WebMvcConfig.class };
+    }
+
+    @Override
+    protected String[] getServletMappings() {
+        return new String[] { "/" };
+    }
+
+}
+```
+* Create WebMvcConfig.java class
+```
+@Configuration
+@EnableWebMvc
+@ComponentScan(basePackages={"com.nj.springmvcdemo.web"})
+public class WebMvcConfig {
+
+	@Bean
+	public ViewResolver viewResolver() {
+		ViewResolver resolver = new InternalResourceViewResolver("/WEB-INF/views/", ".jsp");
+		return resolver;
+	}
+}
+```
+
+* Create AppConfig.java this class for including configuration related to database and so on.
+```
+@Configuration
+//@ComponentScan(basePackages={"com.nj.springmvcdemo.services", "com.nj.springmvcdemo.dao"})
+@ComponentScan(basePackages={"com.nj.springmvcdemo"}, 
+	excludeFilters=@Filter(type=FilterType.REGEX, pattern="com.nj.springmvcdemo.web.*"))
+public class AppConfig {
+
+}
+```
+
+* rest all DAO, controller and so on remains same
 
