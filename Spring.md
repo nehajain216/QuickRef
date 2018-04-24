@@ -3,7 +3,9 @@
 ## Introduction
 * Spring is framework for dependency Injection / Inversion of Control (Dep/IOC)
 * IoC: Rather than classes taking the control of initializing its dependencies, control will be passed to the container.
-* Instead of directly initializing class objects, we initialize them through XML/Annotation configurations.
+* IOC contaner will be responsible for initializing resources/beans and injecting them as dependencies.
+* Dependency Injection helps in removing the hard coded dependencies and also it moves dependency resolution from compile time to run time.
+* We can use XML/annotaion based configuration to implement dependency injection.
 * For example, consider 3 tier architecture where we have Servlets ---> services ---> DAO
 
 ## Getting Started
