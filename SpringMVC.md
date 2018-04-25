@@ -3,6 +3,16 @@
 ## Introduction
 * Spring MVC is one of the most important modules of the Spring framework
 
+## Important Notes:
+* In Spring Web applications, there are two types of containers - Application context and Web Application Context.
+	* Application context is initiaized by ContextLoaderListener defined in web.xml
+	* This is a root container and generally contains components such as Services and DAO
+	* There will be one application context per application.
+	* Web Application context: This is a child context of Application context.
+	* Web Application context is initialized by Dispatcher servlet
+	* handlers/controllers/view-resolvers are managed by this context
+
+
 ## Spring MVC configuration using XML
 
 ## Getting Started
