@@ -8,14 +8,6 @@
 * We can use XML/annotaion based configuration to implement dependency injection.
 * For example, consider 3 tier architecture where we have Servlets ---> services ---> DAO
 
-## Important Notes:
-* In Spring Web applications, there are two types of containers - Application context and Web Application Context.
-	* Application context is initiaized by ContextLoaderListener defined in web.xml
-	* This is a root container and generally contains components such as Services and DAO
-	* There will be one application context per application.
-	* Web Application context: This is a child context of Application context.
-	* Web Application context is initialized by Dispatcher servlet
-	* handlers/controllers/view-resolvers are managed by this context
 
 
 ## Getting Started
