@@ -46,6 +46,7 @@
 ```
 
 * Update web.xml file to include DispatcherServlet (one servlet) to receive all kinds of information.
+* Here we have configured it as only one context that is WebApplication Context (but not as - Application context and WebApplication context - we have covered that scenario in javaconfig example )
 ```
 <servlet>
 	<servlet-name>dispatcher</servlet-name>
@@ -59,6 +60,7 @@
 ```
 
 * dispatcher-servlet.xml -- based on the servlet name (here "dispatcher", it will look for <servletname>-servlet.xml file. If needed we can specify different name as well. However, here, we are creating dispatcher-servlet.xml only.
+* <url-pattern>/</url-pattern> - This means for all the URL patterns, request will be handled by dispatcher.
 ```
 	<context:annotation-config></context:annotation-config>
 	<context:component-scan base-package="com.nj.blog"></context:component-scan>
@@ -71,6 +73,7 @@
 		<property name="suffix" value=".jsp"></property>
 	</bean>
 ```
+* viewResolver - here we specify the views path and the file type (here its jsp)
 
 * Create IndexController.java
 ```
