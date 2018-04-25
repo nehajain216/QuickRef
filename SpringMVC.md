@@ -1,7 +1,7 @@
 # Spring MVC configuration Quick Reference
 
 ## Introduction
-*Spring MVC is one of the most important modules of the Spring framework
+* Spring MVC is one of the most important modules of the Spring framework
 
 ## Spring MVC configuration using XML
 
