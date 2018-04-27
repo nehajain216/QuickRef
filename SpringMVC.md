@@ -11,6 +11,10 @@
 	* Web Application context: This is a child context of Application context.
 	* Web Application context is initialized by Dispatcher servlet
 	* handlers/controllers/view-resolvers are managed by this context
+*View Resolver
+	* ViewResolver implementations are used to resolve the view pages by name
+	* we are providing the view pages directory and suffix location
+	* If a controller handler method returns “home”, view resolver will use view page located at /WEB-INF/views/home.jsp.
 
 
 ## Spring MVC configuration using XML
