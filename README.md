@@ -9,7 +9,7 @@ Quick Reference Docs
     </properties>
     ``
 
-Project build using maven:
+Project build using maven (.war file):
 
 Steps to build package:
 At command prompt -- navigate to project directory 
