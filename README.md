@@ -55,7 +55,42 @@ So to deploy SpringBoot
 from command prompt, navigate to "target" folder where .jar file (here: SpringBoot-Demo.jar) is been placed and type: java -jar SpringBoot-Demo.jar
 This will deploy the package.
 
+# Steps to create Maven project
+Goto Github and create new repository -- say "App4"
+Description is optional
+Initialze this repository with a README should always be selected.
+In "Add.gitignore" select "Java" if repositiry is created for Java project. Here App4 ia a java project.
+Click Create repository.
+Goto "Clone or download" and copy the link by clicking the "Copied to clipboard" icon.
 
+Now goto IDE and select "Git" view and select "clone the git repositry and add the clone to this view"
+This opens "lone Git repository" wizard.
+select "Clone URI"
+click Next
+check th details and click Next
+select available files(here its masters) and click next
+select the directory (here D:\Neha\git\App4)and click Finish
+
+Right click on working tree (here App4 working tree) and click "import projects"
+
+Goto Java EE perspective and App4 project is available.
+Create Maven folder structure manually
+src/main/java
+src/main/resources
+src/test/java
+src/test/resources
+
+Now convert this to maven project by right clicking on "App4" --> select "configure" --> convert to maven project.
+This will convert the project in maven project.
+Now create a hello class and push these changes to Git. (blank folders are not commited to git so we are creating a hello class)
+
+Right click on "App4" and select "teams" ==>commit.
+This will list out all the files. We shall never commit files names starting with "." as they are IDE specific.
+to ignore those files update the file names in "gitignore" (can be viewed at Naigator tab, besides roject explorer tab) and then commit the changes.
+Files names to be included in .gitignore files are:
+.classpath
+.project
+.settings
 
 # Lambda Expression
 Before Lambda expression we used create anonymous class.
