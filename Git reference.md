@@ -12,8 +12,9 @@ Open command prompt and navigate to the working directory path
 * Goto working directory , a new folder with repository name will get created and 
 all the files in repository get copied to that folder
 
-* Goto unziped folder of projret created from start.spring.io and 
+* Goto the project folder(unzip it) created from start.spring.io and 
 copy all the files within the folder including hidden file 
 
 * Paste the files in working directory project folder
-Open the project using IDE (intelliJ, Eclipse)
+
+* Open the project using IDE (intelliJ, Eclipse)
