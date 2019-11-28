@@ -1,5 +1,0 @@
-Enum:
-Enum is used for setting pre defined constants (like- days of week, moths, planets of solar system and so on)
-Enum cannot extends another class because it implicitly extends java.lang.Enum (and java doesnot support multiple inheritance)
-we can have variables, constructor and methods inside enum  
-Variables inside Enum are implicitly final static

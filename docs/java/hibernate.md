@@ -1,16 +1,17 @@
 # JPA/Hibernate Quick Reference
 
 ## Introduction
-* Hibernate is a persistence framework which is used to persist data from Java environment to database.
-* JPA is a Object Relational Mapping framework.
-* JPA is a Specification and Hibernate is implementation of JPA.
-* There are other implementations of JPA like EclipseLink.
+
+- Hibernate is a persistence framework which is used to persist data from Java environment to database.
+- JPA is a Object Relational Mapping framework.
+- JPA is a Specification and Hibernate is implementation of JPA.
+- There are other implementations of JPA like EclipseLink.
 
 ## Getting Started
 
-* Maven Dependencies
+- Maven Dependencies
 
-```
+```xml
 <dependency>
 	<groupId>org.hibernate</groupId>
 	<artifactId>hibernate-entitymanager</artifactId>
@@ -18,7 +19,7 @@
 </dependency>
 ```
 
-* Add database driver
+- Add database driver
 
 ```
 <dependency>
@@ -28,7 +29,7 @@
 </dependency>
 ```
 
-* Create JPA Entity
+- Create JPA Entity
 
 ```
 import javax.persistence.Column;
@@ -40,7 +41,7 @@ import javax.persistence.Id;
 
 @Entity
 @Table(name="persons")
-public class Person 
+public class Person
 {
     @Id @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="id")
@@ -54,21 +55,21 @@ public class Person
 }
 ```
 
-* Configure database connection properties and JPA entities in src/main/resources/META-INF/persistence.xml
+- Configure database connection properties and JPA entities in src/main/resources/META-INF/persistence.xml
 
 ```
-<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" 
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
 	http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
   	version="2.1">
   <persistence-unit name="jpa-demo" transaction-type="RESOURCE_LOCAL">
   <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-  
- 
+
+
   <class>com.nj.jpademo.entities.Person</class>
   <class>com.nj.jpademo.entities.Address</class>
-  
+
   <properties>
     <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpadb?useSSL=true" />
     <property name="javax.persistence.jdbc.user" value="root" />
@@ -77,14 +78,14 @@ public class Person
     <property name="hibernate.show_sql" value="true" />
     <property name="hibernate.format_sql" value="true" />
     <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
-    <property name="hibernate.hbm2ddl.auto" value="validate" />    
+    <property name="hibernate.hbm2ddl.auto" value="validate" />
     </properties>
   </persistence-unit>
 </persistence>
 ```
 
-* Create EntityManagerFactory
-* Notes: A connection to a database is represented by an EntityManager instance, which also provides functionality for performing operations on a database. An EntityManagerFactory is constructed for a specific database and the main role of an EntityManagerFactory instance is to support instantiation of EntityManager instances.
+- Create EntityManagerFactory
+- Notes: A connection to a database is represented by an EntityManager instance, which also provides functionality for performing operations on a database. An EntityManagerFactory is constructed for a specific database and the main role of an EntityManagerFactory instance is to support instantiation of EntityManager instances.
 
 ```
 import javax.persistence.EntityManager;
@@ -111,10 +112,10 @@ public class PersistenceManager {
 }
 ```
 
-* Create EntityManager to perform database operations
+- Create EntityManager to perform database operations
 
 ```
-public class EmployeeDAO 
+public class EmployeeDAO
 {
 
 	 public void save(Person p) {

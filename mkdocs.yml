@@ -1,0 +1,39 @@
+site_name: "Neha QuickRef"
+site_description: "My Quick Reference Docs"
+site_author: "Neha Jain"
+site_url: "https://nehajain216.github.io/QuickRef/"
+
+# Repository
+repo_name: "nehajain216/QuickRef"
+repo_url: "https://github.com/nehajain216/QuickRef"
+
+# Copyright
+copyright: "Copyright &copy; 2019 - 2020 Neha Jain"
+
+theme: material
+nav:
+  - Home: index.md
+  - General:
+      - Tips: general/tips.md
+      - Links: general/links.md
+  - Git:
+      - Git Reference: git/git-reference.md
+  - Java:
+      - Basics: java/basics.md
+      - Hibernate: java/hibernate.md
+      - Servlets: java/servlets.md
+      - Spring: java/spring.md
+      - SpringMVC: java/spring-mvc.md
+  - Web Development:
+      - ReactJS: web-development/reactjs.md
+
+# Customization
+extra:
+  manifest: "manifest.webmanifest"
+  social:
+    - type: "github"
+      link: "https://github.com/nehajain216"
+
+# Extensions
+markdown_extensions:
+  - codehilite
