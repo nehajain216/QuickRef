@@ -10,3 +10,6 @@
 > npm install -g create-react-app
 > create-react-app appname
 ```
+
+### Start
+> npm start
