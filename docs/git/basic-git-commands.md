@@ -1,4 +1,10 @@
 ## Basic Git commands
+* setting global user 
+> ```git config --global user.name "nehajain216" && git config --global user.email "neha.jain216@gmail.com"```
+
+* setting user for particular project -- navigate to prject folder and run below command:
+>```git config user.name "NehaJainTW" && git config user.email "neha.jain@thoughtworks.com"```
+
 * To check Git Version:
 > ```git version```
 * Add changes to Git
