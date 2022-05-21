@@ -45,6 +45,17 @@ Note: https://github.com/junit-team/junit5-samples/blob/r5.8.2/junit5-jupiter-st
     import static org.hamcrest.Matchers.*
 ```
 
-
-
-
+Notes:
+* With Java 17 and above versions - while creating payload we can use below format of triple codes""".
+* This makes code more redable.
+```shell
+String payload = """
+                {
+                    "username": "admin1@gmail.com",
+                    "password": "admin"
+                }
+            """;
+```
+* instead of using ```.assertThat().statusCode(200)``` we can directly use ```.statusCode(200)```. 
+same way for others - instead of ```.assertThat().body("$",hasKey("access_token"))``` we can use
+```..body("$",hasKey("access_token"))```
